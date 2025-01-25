@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Sudoku Game</h1>
+    <hr>
+    <div class="start">
+        <button class="startGame">Start Game</button>
+        <h3>Mistakes - <span id="mistake">1/3</span></h3>
+        <h3>Score <span id="score">___</span></h3>
+        <h3 id="timeNumber"> 00:00 </h3>
+        <button id="pause"><i class="fa fa-pause"></i></button>
+        <button id="play"><i class="fa fa-play"></i></button>
+    </div>
+
+    <div class="container">    
+        
+        <div class="square1">
+            <div class="square"><p data-id="1"></p></div>
+            <div class="square"><p data-id="2"></p></div>
+            <div class="square"><p data-id="3"></p></div>
+            <div class="square"><p data-id="4"></p></div>
+            <div class="square"><p data-id="5"></p></div>
+            <div class="square"><p data-id="6"></p></div>
+            <div class="square"><p data-id="7"></p></div>
+            <div class="square"><p data-id="8"></p></div>
+            <div class="square"><p data-id="9"></p></div>
+        </div>
+        <div class="square2">
+            <div class="square"><p data-id="10"></p></div>
+            <div class="square"><p data-id="11"></p></div>
+            <div class="square"><p data-id="12"></p></div>
+            <div class="square"><p data-id="13"></p></div>
+            <div class="square"><p data-id="14"></p></div>
+            <div class="square"><p data-id="15"></p></div>
+            <div class="square"><p data-id="16"></p></div>
+            <div class="square"><p data-id="17"></p></div>
+            <div class="square"><p data-id="18"></p></div>
+        </div>
+        <div class="square3">
+            <div class="square"><p data-id="19"></p></div>
+            <div class="square"><p data-id="20"></p></div>
+            <div class="square"><p data-id="21"></p></div>
+            <div class="square"><p data-id="22"></p></div>
+            <div class="square"><p data-id="23"></p></div>
+            <div class="square"><p data-id="24"></p></div>
+            <div class="square"><p data-id="25"></p></div>
+            <div class="square"><p data-id="26"></p></div>
+            <div class="square"><p data-id="27"></p></div>
+        </div>
+        <div class="square4">
+            <div class="square"><p data-id="28"></p></div>
+            <div class="square"><p data-id="29"></p></div>
+            <div class="square"><p data-id="30"></p></div>
+            <div class="square"><p data-id="31"></p></div>
+            <div class="square"><p data-id="32"></p></div>
+            <div class="square"><p data-id="33"></p></div>
+            <div class="square"><p data-id="34"></p></div>
+            <div class="square"><p data-id="35"></p></div>
+            <div class="square"><p data-id="36"></p></div>
+        </div>
+        <div class="square5">
+            <div class="square"><p data-id="37"></p></div>
+            <div class="square"><p data-id="38"></p></div>
+            <div class="square"><p data-id="39"></p></div>
+            <div class="square"><p data-id="40"></p></div>
+            <div class="square"><p data-id="41"></p></div>
+            <div class="square"><p data-id="42"></p></div>
+            <div class="square"><p data-id="43"></p></div>
+            <div class="square"><p data-id="44"></p></div>
+            <div class="square"><p data-id="45"></p></div>
+        </div>
+        <div class="square6">
+            <div class="square"><p data-id="46"></p></div>
+            <div class="square"><p data-id="47"></p></div>
+            <div class="square"><p data-id="48"></p></div>
+            <div class="square"><p data-id="49"></p></div>
+            <div class="square"><p data-id="50"></p></div>
+            <div class="square"><p data-id="51"></p></div>
+            <div class="square"><p data-id="52"></p></div>
+            <div class="square"><p data-id="53"></p></div>
+            <div class="square"><p data-id="54"></p></div>
+        </div>
+        <div class="square7">
+            <div class="square"><p data-id="55"></p></div>
+            <div class="square"><p data-id="56"></p></div>
+            <div class="square"><p data-id="57"></p></div>
+            <div class="square"><p data-id="58"></p></div>
+            <div class="square"><p data-id="59"></p></div>
+            <div class="square"><p data-id="60"></p></div>
+            <div class="square"><p data-id="61"></p></div>
+            <div class="square"><p data-id="62"></p></div>
+            <div class="square"><p data-id="63"></p></div>
+        </div>
+        <div class="square8">
+            <div class="square"><p data-id="64"></p></div>
+            <div class="square"><p data-id="65"></p></div>
+            <div class="square"><p data-id="66"></p></div>
+            <div class="square"><p data-id="67"></p></div>
+            <div class="square"><p data-id="68"></p></div>
+            <div class="square"><p data-id="69"></p></div>
+            <div class="square"><p data-id="70"></p></div>
+            <div class="square"><p data-id="71"></p></div>
+            <div class="square"><p data-id="72"></p></div>
+        </div> 
+        <div class="square9">
+            <div class="square"><p data-id="73"></p></div>
+            <div class="square"><p data-id="74"></p></div>
+            <div class="square"><p data-id="75"></p></div>
+            <div class="square"><p data-id="76"></p></div>
+            <div class="square"><p data-id="77"></p></div>
+            <div class="square"><p data-id="78"></p></div>
+            <div class="square"><p data-id="79"></p></div>
+            <div class="square"><p data-id="80"></p></div>
+            <div class="square"><p data-id="81"></p></div>
+        </div>
+    </div>
+    
+    <div class="container2">
+        <div class="numbers"><button>1</button></div>
+        <div class="numbers"><button>2</button></div>
+        <div class="numbers"><button>3</button></div>
+        <div class="numbers"><button>4</button></div>
+        <div class="numbers"><button>5</button></div>
+        <div class="numbers"><button>6</button></div>
+        <div class="numbers"><button>7</button></div>
+        <div class="numbers"><button>8</button></div>
+        <div class="numbers"><button>9</button></div>
+    </div>
+
+    <hr>
+    
+    <script src="script.js"></script>
+</body>
+</html>
