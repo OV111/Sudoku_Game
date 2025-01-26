@@ -1,0 +1,150 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1 {
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    font-size: 42px;
+    color: #0056b3;
+}
+.start {
+    display: flex;
+    margin-left: 440px;
+    margin-top: 10px;
+}
+#timenumber {
+    font-size: 20px;
+    margin-left: 1px;
+}
+.hidden {
+    display: "none";
+}
+#pause {
+    cursor: pointer;
+    margin-top: 8px;
+    border-radius: 6px;
+    border-style: solid;
+    width: 30px;
+    height: 30px;
+}
+#pause:hover {
+    background-color: #0056b3;
+    transition: 2s;
+    transform: scale(1.16);
+}
+#play {
+    display: none;
+    cursor: pointer;
+    margin-top: 8px;
+    font-size: 18px;
+    border-radius: 6px;
+    border-style: solid;
+    width: 30px;
+    height: 30px;
+}
+#play:hover {
+    background-color: #0056b3;
+    transition: 2s;
+    transform: scale(1.16);
+}
+.start h3 {
+    font-size: 24px;
+    margin-top: 9px;
+    margin-right: 17px;
+}
+.startGame {
+    font-size: 20px;
+    width: 119px;
+    height: 45px;
+    cursor: pointer;
+    margin-left: 0px;
+    margin-right:15px;
+    border-radius: 6px;
+    border-style: solid;
+    background-color: #FFFFFF ;
+}
+.startGame:hover {
+    background-color: #0056b3;
+    transition: 2s;
+    transform: scale(1.08);
+}
+
+
+#mistake {
+    font-size: 20px;
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(3,150px);
+    grid-template-rows: repeat(3,150px);
+    box-shadow: 7px 7px 18px gray;
+    /* border: 2px solid darkblue; */
+    margin-left: 470px;
+    margin-top: 10px;
+    height: 450px;
+    width: 450px;
+}
+.square1, .square2, .square3, .square4, .square5, .square6, .square7, .square8, .square9 {
+    display: grid;
+    grid-template-columns: repeat(3,50px);
+    grid-template-rows: repeat(3,50px);
+    border: 2px solid darkblue;
+    width: 150px;
+    height: 150px;
+}
+.square {
+    border: 1px solid rgb(197, 197, 203);
+    width: 50px;
+    height: 50px;
+    text-align:center;
+    font-style:bold;
+    font-size:16px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px gray;
+}
+.square:hover{
+    transition: 1s;
+    transform: scale(1.08);
+}
+.square p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    padding:12px;
+}
+
+.container2 {
+   display: flex;
+   margin-top: 20px;
+   margin-left: 470px;
+   height: 30px;
+   width: 450px;
+   margin-bottom: 20px;
+   margin-left: 477px;
+}
+.numbers {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 0px;
+    background-color: #FFFFFF;
+}
+.numbers button {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 6px;
+    border: 2px solid;
+}
+.numbers button:hover{
+    background-color: #0056b3;
+    transform: scale(1.1);
+    transition: 1s;
+    font-size: 22px;
+}
+
