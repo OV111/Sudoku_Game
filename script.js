@@ -22,7 +22,7 @@ numbersBtn.forEach((button) => {
     })
 })
  
-squareBtn.forEach((x) => {                                      // THIS WILL BE CHANGED 
+squareBtn.forEach((x) => {                                      // THIS NEED TO BE CHANGED 
     x.addEventListener("click", (e) => {                                                
         if(e.target.textContent == "" && e.target.textContent == selectedNumber) {
             alert("you already choose")
