@@ -9,19 +9,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Sudoku Game</h1>
+        <header>
+            <h1>Sudoku Game</h1>
+        </header>
     <hr>
-    <div class="start">                                    <!--header sarqel-->
-        <button class="startGame">Start Game</button>
-        <h3>Mistakes - <span id="mistake">1/3</span></h3>
-        <h3>Score <span id="score">___</span></h3>
-        <h3 id="timeNumber"> 00:00 </h3>
-        <button id="pause"><i class="fa fa-pause"></i></button>
-        <button id="play"><i class="fa fa-play"></i></button>
-    </div>
+        <nav class="start">
+            <button class="startGame">Start Game</button>
+            <h3>Mistakes: <span id="mistake">1/3</span></h3>
+            <h3>Score: <span id="score">___</span></h3>
+            <h3 id="timeNumber"> 00:00</h3>
+            <button id="pause"><i class="fa fa-pause"></i></button>
+            <button id="play"><i class="fa fa-play"></i></button>
+        </nav>                                    <!--header sarqel-->
 
     <div class="container">    
-        
         <div class="square1">
             <div class="square"><p data-id="1"></p></div>
             <div class="square"><p data-id="2"></p></div>
@@ -123,7 +124,7 @@
         </div>
     </div>
     
-    <div class="container2">
+    <footer class="container2">
         <div class="numbers"><button>1</button></div>
         <div class="numbers"><button>2</button></div>
         <div class="numbers"><button>3</button></div>
@@ -133,8 +134,8 @@
         <div class="numbers"><button>7</button></div>
         <div class="numbers"><button>8</button></div>
         <div class="numbers"><button>9</button></div>
-    </div>
-
+    </footer>
+    
     <hr>
     
     <script type="module" src="script.js"></script>
