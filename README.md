@@ -35,11 +35,12 @@ A simple and interactive Sudoku Game built using JavaScript. This project allows
 ### Built With
  The game logic, including puzzle generation, validation, and user interaction, is powered by JavaScript (including 2 js files).
 
-* [JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
-* [HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+* [![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)](https://www.javascript.com/)
 
-* [CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+* [![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+
+* [![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -62,10 +63,10 @@ For more information, see the `LICENSE.txt` file.
 
 ### Contact Info
 
-[![Gmail](https://img.shields.io/badge/Gmail-blue?style=for-the-badge&logo=gmail&logoColor=white)](https://mail.google.com/mail/u/0/#inbox)
+* [![Gmail](https://img.shields.io/badge/Gmail-blue?style=for-the-badge&logo=gmail&logoColor=white)](https://mail.google.com/mail/u/0/#inbox)
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vahe-ohanyan-352165328/)
+* [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vahe-ohanyan-352165328/)
 
 ### Motivation for Creating!
 
-I was first drawn to the logic behind Sudoku, appreciating how the puzzle’s structure allows for a deep, systematic approach. As I explored further, I discovered the backtracking algorithm and found it fascinating. This led me to continuously research ways to implement it effectively, and the idea of building my own version of a Sudoku game became a natural next step. The challenge of applying the backtracking algorithm to create a functional game, while also improving my coding skills, was incredibly motivating and rewarding. Additionally, I’ve been greatly inspired by Kenny Yip's coding, which motivated me to take on this project!!!
+I was first drawn to the logic behind Sudoku, appreciating how the puzzle’s structure allows for a deep, systematic approach. As I explored further, I discovered the backtracking algorithm and found it fascinating. This led me to continuously research ways to implement it effectively, and the idea of building my own version of a Sudoku game became a natural next step. The challenge of applying the backtracking algorithm to create a functional game, while also improving my coding skills, was incredibly motivating and rewarding. Additionally, I’ve been greatly inspired by Kenny Yip's coding (https://www.youtube.com/c/KennyYipCoding), which motivated me to take on this project!!!
