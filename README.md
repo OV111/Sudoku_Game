@@ -37,8 +37,10 @@
 </details>
 
 ## About The Project
-
+A simple and interactive Sudoku Game built using JavaScript. This project allows users to solve a Sudoku puzzle, providing a clean, user-friendly interface to play and test their puzzle-solving skills. The game includes features like automatic validation and highlights for correct or incorrect inputs.
 
 ### Built With
 
-* [![JavaScript][(https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)]]
+* [JavaScript][(https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)]
+
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
