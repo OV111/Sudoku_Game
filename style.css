@@ -86,20 +86,21 @@ h3 {
     display: grid;
     grid-template-columns: repeat(3,150px);
     grid-template-rows: repeat(3,150px);
-    box-shadow: 7px 7px 18px gray;
-    /* border: 2px solid darkblue; */
+    box-shadow: 7px 7px 18px rgb(115, 114, 114);
+    border: 2px solid darkblue;
     margin-left: 470px;
     margin-top: 10px;
-    height: 450px;
-    width: 450px;
+    height: 455px;
+    width: 455px;
 }
 .square1, .square2, .square3, .square4, .square5, .square6, .square7, .square8, .square9 {
     display: grid;
-    grid-template-columns: repeat(3,50px);
-    grid-template-rows: repeat(3,50px);
+    grid-template-columns: repeat(3,47.5px);
+    grid-template-rows: repeat(3,47.5px);
     border: 2px solid darkblue;
-    width: 150px;
-    height: 150px;
+    width: 151px;
+    height: 151px;
+    border: collapse;
 }
 .square {
     border: 1px solid rgb(197, 197, 203);
@@ -109,28 +110,31 @@ h3 {
     font-style:bold;
     font-size:16px;
     cursor: pointer;
-    box-shadow: 2px 2px 5px gray;
+    box-shadow:2px 2px 2px gray ;
 }
 .square:hover{
-    transition: 1s;
-    transform: scale(1.08);
+    background-color: #0056b3;
+    transition: 0.7s ease-in-out;
+    transform: scale(1.05);
 }
 .square p {
     display: flex;
     justify-content: center;
     align-items: center;
     align-items: center;
-    padding:12px;
+    padding: 13px;
 }
 
 .container2 {
    display: flex;
+   justify-content: center;
+   align-items: center;
    margin-top: 20px;
    margin-left: 470px;
    height: 30px;
    width: 450px;
    margin-bottom: 20px;
-   margin-left: 477px;
+   margin-left: 478px
 }
 .numbers {
     display: grid;
@@ -149,7 +153,5 @@ h3 {
 .numbers button:hover{
     background-color: #0056b3;
     transform: scale(1.1);
-    transition: 1s;
     font-size: 22px;
 }
-
