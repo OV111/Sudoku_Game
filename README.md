@@ -60,12 +60,11 @@ A simple and interactive Sudoku Game built using JavaScript. This project allows
 
 For more information, see the `LICENSE.txt` file.
 
-
 ### Contact Info
 
-![Gmail][(https://img.shields.io/badge/Gmail-blue?style=for-the-badge&logo=gmail&logoColor=white)(https://mail.google.com/mail/u/0/#inbox)]
+[![Gmail](https://img.shields.io/badge/Gmail-blue?style=for-the-badge&logo=gmail&logoColor=white)](https://mail.google.com/mail/u/0/#inbox)
 
-![LinkedIn][(https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)(https://www.linkedin.com/in/vahe-ohanyan-352165328/)]
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vahe-ohanyan-352165328/)
 
 ### Motivation for Creating!
 
