@@ -1,8 +1,6 @@
 # Sudoku Game
 [![Stargazers](https://img.shields.io/github/stars/OV111/Sudoku_Game?style=social)](https://github.com/OV111/Sudoku_Game/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=social&logo=linkedin)](https://www.linkedin.com/in/vahe-ohanyan-352165328/)
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -37,3 +35,10 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
+
+## About The Project
+
+
+### Built With
+
+* [![JavaScript][https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E]]
