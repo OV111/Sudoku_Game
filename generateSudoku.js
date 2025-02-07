@@ -1,7 +1,8 @@
 export function initializeGrid() {
     let grid = [];
-    for(let i = 0;i < 9; ++i) {
-        let row = Array(9).fill(0);  // null
+    //Initializing the 9x9 grid filling with 0's 
+    for(let i = 0; i < 9; ++i) {
+        let row = Array(9).fill(0);
         grid.push(row);
     }
     generatePuzzle(grid);    // Generating puzzle first 
@@ -12,29 +13,39 @@ function fillGrid(grid) {
     for(let r = 0; r < 9; ++r) {
         for(let c = 0; c < 9; ++c) {
             let index =  r * 9 + c;
-            squares[r * 9 + c].textContent = grid[r][c];
+            squares[index].textContent = grid[r][c]; // Updating grid with values 
         }
     }
 }
 
-
-function generatePuzzle(grid) {   // main function (generating valid puzzle)
-    backtrack(grid);
-
+function generatePuzzle(grid) {   // Main Working Function (generating valid puzzle)
+    backtrack(grid);    // Fill grid with valid values
+    removeNumbers(grid);    // Remove numbers for puzzle
 }
 
 function removeNumbers(grid) {
-
+    let cellsToRemove = 25;  // changable by difficulty level
+    let removedArr = [];
+    while(removedArr.length < cellsToRemove) {
+        let row = Math.floor(Math.random() * 9);
+        let column = Math.floor(Math.random() * 9);
+        
+        if(!removedArr.includes(`${row},${column}`)) {  // Checking for none duplication
+            grid[row][column] = '';                     
+            removedArr.push(`${row},${column}`);
+        }
+    }
 }
 
+// Backtracking Algorithm filling grid
 function backtrack(grid) {   
     for(let r = 0; r < 9; ++r) {      //Looping through row & columns
         for(let c = 0; c < 9; ++c) {
-            if(grid[r][c] === 0) {                    // checking if cell is free(=== 0)
+            if(grid[r][c] == "0") {                   // checking if cell is free(=== 0)
                 for(let num = 1; num <= 9; ++num) {  // Looping for trying putting numbers  
                     if(isValid(grid,r,c,num)) {     // if Valid number put the number
                         grid[r][c] = num;
-                        if(backtrack(grid)) { return true; }  //// !Recurive call
+                        if(backtrack(grid)) { return true; }  // !Recursive call
                         grid[r][c] = 0;
                     }
                 }
@@ -45,7 +56,7 @@ function backtrack(grid) {
    return true;
 }
 
-function isValid(grid,row,col,num) {      // Validation of numbers (cells)
+export function isValid(grid,row,col,num) {      // Validation of numbers (cells)
     for(let i = 0; i < 9; ++i) {
         if(grid[row][i] === num) {   // checking if number of cell(in row),
             return false;           // isn't repeating by horizontal
@@ -69,13 +80,6 @@ function isValid(grid,row,col,num) {      // Validation of numbers (cells)
     }
     return true;
 }
-
-
-
-
- 
-
-
 
 
 
