@@ -8,8 +8,7 @@ const pauseBtn = document.querySelector("#pause")
 const playBtn = document.querySelector("#play")
 
 const mistakeElem = document.getElementById("mistake")
-const square1number = document.querySelector("#number");
- 
+const square1number = document.getElementById("number");
  
 const numbersBtn = document.querySelectorAll(".numbers")
 let selectedNumber = null;
@@ -60,9 +59,21 @@ function startTimer() {
     },1000)
 }
 
+let mistakeCount = 0;
+let maxMistake = 3;
 function mistakeCounter() {
-    mistakeElem
+
+    
 }
+
+
+function scoreCounter() {
+
+}
+
+
+
+
 
 let stopTime = {minutes:0, seconds:0,}                 // stop Time object!
 
@@ -93,17 +104,4 @@ playBtn.addEventListener("click",() => {
 
 
 
-
-
-
-
-
-
-
-// // alert("You Win")
-
-
-// // const x = document.querySelector(".square1")
-// // let y = x.querySelectorAll(".square p")
-
-// // alert(Array.from(y).map(el => el.textContent))
+// alert("You Win")
