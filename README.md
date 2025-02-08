@@ -70,3 +70,5 @@ For more information, see the `LICENSE.txt` file.
 ### Motivation for Creating!
 
 I was first drawn to the logic behind Sudoku, appreciating how the puzzle’s structure allows for a deep, systematic approach. As I explored further, I discovered the backtracking algorithm and found it fascinating. This led me to continuously research ways to implement it effectively, and the idea of building my own version of a Sudoku game became a natural next step. The challenge of applying the backtracking algorithm to create a functional game, while also improving my coding skills, was incredibly motivating and rewarding. Additionally, I’ve been greatly inspired by Kenny Yip's coding (https://www.youtube.com/c/KennyYipCoding), which motivated me to take on this project!!!
+
+video of playing it!

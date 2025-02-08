@@ -28,7 +28,7 @@ numbersBtn.forEach((button) => {
 squareBtn.forEach((x) => {                                      // THIS NEED TO BE CHANGED 
     x.addEventListener("click", (e) => {                                   
         if(e.target.textContent === selectedNumber) {
-            alert("you already choose");  
+            alert("already there is num");  
         } else if(e.target.textContent === "1") {
             alert("already defined")
         }
