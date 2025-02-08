@@ -17,21 +17,30 @@ const squareBtn = document.querySelectorAll(".square")
 numbersBtn.forEach((button) => {
     button.addEventListener("click", (e) => {
         selectedNumber = e.target.textContent
-        console.log(selectedNumber)
+        console.log(selectedNumber);                    // Removable
     })
 })
- 
+
+
+
+//! Note that i define grid numbers as a string !!!/////////////////////////////////////////////////
+
 squareBtn.forEach((x) => {                                      // THIS NEED TO BE CHANGED 
-    x.addEventListener("click", (e) => {                                                
-        if(e.target.textContent == "" && e.target.textContent == selectedNumber) {
-            alert("you already choose")
-        } else if(selectedNumber) {
-            e.target.textContent = selectedNumber
+    x.addEventListener("click", (e) => {                                   
+        if(e.target.textContent === selectedNumber) {
+            alert("you already choose");  
+        } else if(e.target.textContent === "1") {
+            alert("already defined")
         }
+        else if(selectedNumber) {
+            e.target.textContent = selectedNumber;
+        } 
     })
 })
  
  
+
+
  
 let timer = 0
 let seconds = 0;
@@ -58,19 +67,6 @@ function startTimer() {
         time.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`; 
     },1000)
 }
-
-let mistakeCount = 0;
-let maxMistake = 3;
-function mistakeCounter() {
-
-    
-}
-
-
-function scoreCounter() {
-
-}
-
 
 
 
