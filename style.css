@@ -114,7 +114,7 @@ h3 {
 }
 .square:hover{
     background-color: #0056b3;
-    transition: 0.7s ease-in-out;
+    transition: 0.1s ease-in;
     transform: scale(1.05);
 }
 .square p {
