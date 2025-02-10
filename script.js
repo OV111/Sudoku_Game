@@ -53,7 +53,6 @@ squareBtn.forEach((cell,index) => {
   Checks if placing 'number' at grid[row][col] follows Sudoku rules,
   Ensures no duplicates in the row, column, or 3x3 box.
 */
-
 function isValid(grid,row,col,number) {  
     for(let i = 0; i < 9; ++i) {        
         if(grid[row][i] === number) {
@@ -78,8 +77,6 @@ function isValid(grid,row,col,number) {
     }
     return true;
 }
-
-
 
 
  
