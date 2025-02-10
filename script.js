@@ -1,44 +1,85 @@
-import { initializeGrid } from "./generateSudoku.js";
+import { initializeGrid, grid } from "./generateSudoku.js";
 
-initializeGrid()    
+initializeGrid();    
 
 const startGame = document.querySelector(".startGame");
 const time = document.getElementById("timeNumber");
-const pauseBtn = document.querySelector("#pause")
-const playBtn = document.querySelector("#play")
+const pauseBtn = document.querySelector("#pause");
+const playBtn = document.querySelector("#play");
 
-const mistakeElem = document.getElementById("mistake")
+const mistakeElem = document.getElementById("mistake");
 const square1number = document.getElementById("number");
- 
-const numbersBtn = document.querySelectorAll(".numbers")
+    
+const numbersBtn = document.querySelectorAll(".numbers");
 let selectedNumber = null;
-const squareBtn = document.querySelectorAll(".square")
- 
+const squareBtn = document.querySelectorAll(".square");
+
+
+
+
+
 numbersBtn.forEach((button) => {
     button.addEventListener("click", (e) => {
-        selectedNumber = e.target.textContent
-        console.log(selectedNumber);                    // Removable
+        selectedNumber = e.target.textContent;
     })
-})
-
-
+});
 
 //! Note that i define grid numbers as a string !!!/////////////////////////////////////////////////
 
-squareBtn.forEach((x) => {                                      // THIS NEED TO BE CHANGED 
-    x.addEventListener("click", (e) => {                                   
-        if(e.target.textContent === selectedNumber) {
-            alert("already there is num");  
-        } else if(e.target.textContent === "1") {
-            alert("already defined")
+squareBtn.forEach((cell,index) => {   
+        cell.addEventListener("click", (e) => {             
+
+        let row = Math.floor(index / 9);            // Defining rows,columns(can't import)
+        let column = index % 9;
+        let num = selectedNumber;
+
+        if(e.target.textContent === "") {          // empty cells only 
+            if(isValid(grid,row,column,num)) {    // checking Valid rows,columns,SubBox 
+                e.target.textContent = num;      // for putting the selectedNumber
+                grid[row][column] = num;        // updating grid!
+            } else {
+                console.log("Invalid move: This number cannot be placed here!");//!This will be root for mistakecounter 
+            }
+        } else if(e.target.textContent !== "") {  // already defined numbers
+            console.log("You can't change a predefined number!");
+            return ;
+        }    
+        // e.target.textContent is the squares (input)number also what puzzle generate 
+        // selectedNumber is the my selected number that i want to put in the square
+        })
+});
+
+/*
+  Checks if placing 'number' at grid[row][col] follows Sudoku rules,
+  Ensures no duplicates in the row, column, or 3x3 box.
+*/
+
+function isValid(grid,row,col,number) {  
+    for(let i = 0; i < 9; ++i) {        
+        if(grid[row][i] === number) {
+            return false;
         }
-        else if(selectedNumber) {
-            e.target.textContent = selectedNumber;
-        } 
-    })
-})
- 
- 
+    }
+
+    for(let j = 0; j < 9; ++j) {
+        if(grid[j][col] === number) {
+            return false;
+        }
+    }
+    
+    let BoxStartRow = Math.floor(row / 3) * 3;
+    let BoxStartColumn = Math.floor(col / 3) * 3;
+    for(let i = 0; i < 3; ++i) {
+        for(let j = 0; j < 3; ++j) {
+            if(grid[BoxStartRow + i][BoxStartColumn + j] === number) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
 
 
  
@@ -53,8 +94,7 @@ startGame.addEventListener("click",() => {
     clearInterval(timer)
     seconds = 0;
     minutes = 0;
-    startTimer()
-    
+    startTimer();
 })
  
 function startTimer() {
@@ -70,8 +110,7 @@ function startTimer() {
 
 
 
-
-let stopTime = {minutes:0, seconds:0,}                 // stop Time object!
+let stopTime = {minutes:0, seconds:0,}                 // stopTime object!
 
 pauseBtn.addEventListener("click", () => {
     pauseBtn.style.display = "none"
@@ -81,7 +120,8 @@ pauseBtn.addEventListener("click", () => {
         stopTime = {                                      // storing time's
             minutes: parseFloat(timeParts[0]),
             seconds: parseFloat(timeParts[1]),
-        }
+        };
+
     clearInterval(timer)      
 })
 
