@@ -41,9 +41,7 @@ squareBtn.forEach((cell,index) => {
                 grid[row][column] = num;        // updating grid!
             } else {
                 console.log("Invalid move: This number cannot be placed here!");//!This will be root for mistakecounter 
-                if(mistakeCount == maxMistake) {console.log( "you lose")}
-                mistakeCount++;
-                mistakeElem.textContent = `${mistakeCount}/3`;
+                mistakeCounter();
             }
         } else if(e.target.textContent !== "") {  // already defined numbers
             console.log("You can't change a predefined number!");
@@ -84,10 +82,41 @@ function isValid(grid,row,col,number) {
 }
 
 
+// //? create the gameover function adding the sound of game over !
 
-// function mistakeCounter(grid) {
-//        console.log(mistake);
-// }
+let gameDisplay = document.getElementById("game-display");
+let gameOverScreen = document.getElementById("game-over-screen");
+function gameOver() {
+    gameDisplay.style.display = "none";
+    gameOverScreen.style.display = "block";
+    restartGameBtn.addEventListener("click",() => {
+        restartGame();
+    })
+   
+
+}
+
+let restartGameBtn = document.getElementById("restart");
+function restartGame() {
+    alert("ura");
+}
+
+
+
+function mistakeCounter() {
+    mistakeCount++;
+    mistakeElem.textContent = `${mistakeCount}/3`;
+    if(mistakeCount === maxMistake) {
+        console.log("you lose");
+        gameOver();
+        // throw new Error("you lose"); // for debugging
+
+    }
+}
+
+
+
+
 
 
 
