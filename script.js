@@ -8,6 +8,7 @@ const pauseBtn = document.querySelector("#pause");
 const playBtn = document.querySelector("#play");
 
 const mistakeElem = document.getElementById("mistake");
+let mistakeCount = 0;                                   // not const because changable
 const square1number = document.getElementById("number");
     
 const numbersBtn = document.querySelectorAll(".numbers");
@@ -25,6 +26,7 @@ numbersBtn.forEach((button) => {
 });
 
 //! Note that i define grid numbers as a string !!!/////////////////////////////////////////////////
+let maxMistake = 3;
 
 squareBtn.forEach((cell,index) => {   
         cell.addEventListener("click", (e) => {             
@@ -32,13 +34,16 @@ squareBtn.forEach((cell,index) => {
         let row = Math.floor(index / 9);            // Defining rows,columns(can't import)
         let column = index % 9;
         let num = selectedNumber;
-
+      
         if(e.target.textContent === "") {          // empty cells only 
             if(isValid(grid,row,column,num)) {    // checking Valid rows,columns,SubBox 
                 e.target.textContent = num;      // for putting the selectedNumber
                 grid[row][column] = num;        // updating grid!
             } else {
                 console.log("Invalid move: This number cannot be placed here!");//!This will be root for mistakecounter 
+                if(mistakeCount == maxMistake) {console.log( "you lose")}
+                mistakeCount++;
+                mistakeElem.textContent = `${mistakeCount}/3`;
             }
         } else if(e.target.textContent !== "") {  // already defined numbers
             console.log("You can't change a predefined number!");
@@ -55,13 +60,13 @@ squareBtn.forEach((cell,index) => {
 */
 function isValid(grid,row,col,number) {  
     for(let i = 0; i < 9; ++i) {        
-        if(grid[row][i] === number) {
+        if(grid[row][i] == number) {
             return false;
-        }
+        }                                   //! i need to fix the === comparsion(for perfection)
     }
 
     for(let j = 0; j < 9; ++j) {
-        if(grid[j][col] === number) {
+        if(grid[j][col] == number) {
             return false;
         }
     }
@@ -70,13 +75,57 @@ function isValid(grid,row,col,number) {
     let BoxStartColumn = Math.floor(col / 3) * 3;
     for(let i = 0; i < 3; ++i) {
         for(let j = 0; j < 3; ++j) {
-            if(grid[BoxStartRow + i][BoxStartColumn + j] === number) {
+            if(grid[BoxStartRow + i][BoxStartColumn + j] == number) {
                 return false;
             }
         }
     }
     return true;
 }
+
+
+
+// function mistakeCounter(grid) {
+//        console.log(mistake);
+// }
+
+
+
+function scoreCounter() {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  
