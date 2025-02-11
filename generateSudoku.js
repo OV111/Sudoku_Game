@@ -1,12 +1,15 @@
+export let grid = [];
 export function initializeGrid() {
-    let grid = [];
     //Initializing the 9x9 grid filling with 0's 
     for(let i = 0; i < 9; ++i) {
         let row = Array(9).fill(0);
         grid.push(row);
     }
+    //maybe add the mistakecounter 
+    
     generatePuzzle(grid);    // Generating puzzle first 
     fillGrid(grid);         // Then filling it! 
+    // mistakeCounter(grid);
 }
 function fillGrid(grid) {
     let squares = document.querySelectorAll(".square p");
@@ -24,7 +27,7 @@ function generatePuzzle(grid) {   // Main Working Function (generating valid puz
 }
 
 function removeNumbers(grid) {
-    let cellsToRemove = 25;  // changable by difficulty level
+    let cellsToRemove = 20;  // changable by difficulty level
     let removedArr = [];
     while(removedArr.length < cellsToRemove) {
         let row = Math.floor(Math.random() * 9);
@@ -36,6 +39,7 @@ function removeNumbers(grid) {
         }
     }
 }
+
 
 // Backtracking Algorithm filling grid
 function backtrack(grid) {   
@@ -73,8 +77,8 @@ export function isValid(grid,row,col,num) {      // Validation of numbers (cells
     let BoxStartColumn = Math.floor(col / 3) * 3;
     for(let i = 0; i < 3; ++i){         // checking for specific box all cells
         for(let j = 0; j < 3; ++j) {
-            if(grid[BoxStartRow + i][BoxStartColumn + j] === num) {  //!Chechking Each Cell
-                return false;
+            if(grid[BoxStartRow + i][BoxStartColumn + j] === num) {  //! Chechking Each
+                return false;                                       //! Cell in the SubBox   
             }
         }
     }
