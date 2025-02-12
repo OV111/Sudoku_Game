@@ -5,8 +5,8 @@ initializeGrid();
 
 const startGame = document.querySelector(".startGame");
 const time = document.getElementById("timeNumber");
-const pauseBtn = document.querySelector("#pause");
-const playBtn = document.querySelector("#play");
+const pauseBtn = document.getElementById("pause");
+const playBtn = document.getElementById("play");
 
 const mistakeElem = document.getElementById("mistake");
 let mistakeCount = 0;                                   // not const because changable
@@ -16,7 +16,8 @@ let selectedNumber = null;
 const numbersBtn = document.querySelectorAll(".numbers");
 const squareBtn = document.querySelectorAll(".square");
 
-
+const score = document.getElementById("score");
+let scoreCount = 0;
 
 numbersBtn.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -38,9 +39,12 @@ squareBtn.forEach((cell,index) => {
             if(isValid(grid,row,column,num)) {    // checking Valid rows,columns,SubBox 
                 e.target.textContent = num;      // for putting the selectedNumber
                 grid[row][column] = num;        // updating grid!
+                scoreCounter();            // Adding Score for each right move
+                gameWin();                //if User wins
             } else {
                 console.log("Invalid move: This number cannot be placed here!");//!This will be root for mistakecounter 
                 mistakeCounter();
+                //! game when is mistske
             }
         } else if(e.target.textContent !== "") {  // already defined numbers
             console.log("You can't change a predefined number!");
@@ -100,10 +104,14 @@ function restartGame() {                           // Restart Game in case of lo
     initializeGrid();                                      // Reinitializing grid
 }
 
+
+
+let scoreText = document.getElementById("scoreText");
 function gameOver() {
     gameDisplay.style.display = "none";
     gameOverScreen.style.display = "block";
     gameoversound.play();
+    scoreText.textContent = `Your Score is ${scoreCount}`
     restartGameBtn.addEventListener("click",() => {
         restartGame();
     });
@@ -121,17 +129,39 @@ function mistakeCounter() {
 
 
 
-function scoreCounter() {
-// think about the every time user earns score sound effect    AND ALSO ABOUT THE SOUND BUTTON EFFECT
-
-
+function scoreCounter() {    // think about the every time user earns score sound effect    AND ALSO ABOUT THE SOUND BUTTON EFFECT
+    scoreCount += 100
+    score.textContent = scoreCount;
 }
 
 
-
-function gameWin() {
-    
+function checkWin() {
+    for(let r = 0; r < 9; ++r) {
+        for(let c = 0; c < 9; ++c) {
+            if(grid[r][c] === "") { return false;}
+        }
+    }
+    return true;
 }
+
+
+let gameWinScreen = document.getElementById("game-win-screen");
+let playAgainBtn = document.getElementById("playAgain"); 
+
+function gameWin() {                                        // add the sound effects
+    if(checkWin()) {    
+        gameDisplay.style.display = "none";
+        gameWinScreen.style.display = "block";
+
+        playAgainBtn.addEventListener("click", () => {
+            restartGame();
+            scoreText.textContent = "0"                                                 // thing about score deletion 
+            gameWinScreen.style.display = "none";
+        })
+        console.log("You Win! 🎉"); // for me
+    }
+}
+
 
 
 
@@ -147,7 +177,8 @@ function gameWin() {
 
 
  
-let timer = 0
+let timer = 0                       // add the pause when user win
+                                    // and reset the time when useer win || loss
 let seconds = 0;
 let minutes = 0;
  
@@ -195,7 +226,7 @@ playBtn.addEventListener("click",() => {
 
     minutes =  stopTime.minutes;
     seconds = stopTime.seconds;
-    startTimer()
+    startTimer();
 })
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////
