@@ -1,11 +1,9 @@
 export let grid = [];
-export function initializeGrid() {
-    //Initializing the 9x9 grid filling with 0's 
+export function initializeGrid() {   // Initializing the 9x9 grid filling with 0's 
     for(let i = 0; i < 9; ++i) {
         let row = Array(9).fill(0);
         grid.push(row);
     }
-    
     generatePuzzle(grid);    // Generating puzzle first 
     fillGrid(grid);         // Then filling it! 
 }
