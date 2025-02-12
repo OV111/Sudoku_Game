@@ -5,14 +5,12 @@ export function initializeGrid() {
         let row = Array(9).fill(0);
         grid.push(row);
     }
-    //maybe add the mistakecounter 
     
     generatePuzzle(grid);    // Generating puzzle first 
     fillGrid(grid);         // Then filling it! 
-    // mistakeCounter(grid);
 }
 function fillGrid(grid) {
-    let squares = document.querySelectorAll(".square p");
+    let squares = document.querySelectorAll(".square");
     for(let r = 0; r < 9; ++r) {
         for(let c = 0; c < 9; ++c) {
             let index =  r * 9 + c;
@@ -60,7 +58,7 @@ function backtrack(grid) {
    return true;
 }
 
-export function isValid(grid,row,col,num) {      // Validation of numbers (cells)
+function isValid(grid,row,col,num) {      // Validation of numbers (cells)
     for(let i = 0; i < 9; ++i) {
         if(grid[row][i] === num) {   // checking if number of cell(in row),
             return false;           // isn't repeating by horizontal
@@ -86,10 +84,7 @@ export function isValid(grid,row,col,num) {      // Validation of numbers (cells
 }
 
 
-
-
-
-
+// Indexed Grid!
 // [0,0] [0,1] [0,2] | [0,3] [0,4] [0,5] | [0,6] [0,7] [0,8]
 // [1,0] [1,1] [1,2] | [1,3] [1,4] [1,5] | [1,6] [1,7] [1,8]
 // [2,0] [2,1] [2,2] | [2,3] [2,4] [2,5] | [2,6] [2,7] [2,8]
