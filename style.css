@@ -103,6 +103,11 @@ h3 {
     border: collapse;
 }
 .square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    padding: 13px;
     border: 1px solid rgb(197, 197, 203);
     width: 50px;
     height: 50px;
@@ -117,13 +122,13 @@ h3 {
     transition: 0.1s ease-in;
     transform: scale(1.05);
 }
-.square p {
+/* .square p {
     display: flex;
     justify-content: center;
     align-items: center;
     align-items: center;
     padding: 13px;
-}
+} */
 
 .container2 {
    display: flex;
@@ -154,4 +159,56 @@ h3 {
     background-color: #0056b3;
     transform: scale(1.1);
     font-size: 22px;
+}
+
+
+/* body { */
+    /* background-color: #d60f0f;  /* Set the page background color */
+    /* margin: 0;                  Ensure no margin */
+/* } */
+
+#game-over-screen{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid black;
+    width: 300px;
+    height: 200px;
+    margin: 200px 0 0 550px;
+    padding: 60px 80px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px grey;
+}
+#game-over-screen h2{
+    position: absolute;
+    top: 31%;
+    left: 610px;
+    color: #0056b3;
+    font-size: 35px;
+}
+#game-over-screen h4 {
+    position: absolute;
+    top: 40%;
+    left: 600px;
+    font-size: 20px;
+    font-weight: 500;
+}
+#game-over-screen button {
+    position: absolute;
+    top: 46.5%;
+    left: 629.5px;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#game-over-screen button:hover {
+    background-color: #126bcb;
+    border-radius: 10px;
+    transition: 0.2s ease-in;
+    transform:scale(1.1);
 }
