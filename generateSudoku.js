@@ -20,7 +20,7 @@ function fillGrid(grid) {
 }
 
 function generatePuzzle(grid) {   // Main Working Function (generating valid puzzle)
-    backtrack(grid);    // Fill grid with valid values
+    backtrack(grid);       // Fill grid with valid values
     removeNumbers(grid);    // Remove numbers for puzzle
 }
 
@@ -38,12 +38,11 @@ function removeNumbers(grid) {
     }
 }
 
-
 // Backtracking Algorithm filling grid
 function backtrack(grid) {   
     for(let r = 0; r < 9; ++r) {      //Looping through row & columns
         for(let c = 0; c < 9; ++c) {
-            if(grid[r][c] == "0") {                   // checking if cell is free(=== 0)
+            if(grid[r][c] == "0") {                   // checking if cell is free(=== 0)!
                 for(let num = 1; num <= 9; ++num) {  // Looping for trying putting numbers  
                     if(isValid(grid,r,c,num)) {     // if Valid number put the number
                         grid[r][c] = num;
