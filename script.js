@@ -1,5 +1,6 @@
 import { initializeGrid, grid } from "./generateSudoku.js";
 
+
 initializeGrid();    
 
 const startGame = document.querySelector(".startGame");
@@ -9,24 +10,22 @@ const playBtn = document.querySelector("#play");
 
 const mistakeElem = document.getElementById("mistake");
 let mistakeCount = 0;                                   // not const because changable
-const square1number = document.getElementById("number");
-    
-const numbersBtn = document.querySelectorAll(".numbers");
+let maxMistake = 3;
 let selectedNumber = null;
+
+const numbersBtn = document.querySelectorAll(".numbers");
 const squareBtn = document.querySelectorAll(".square");
-
-
 
 
 
 numbersBtn.forEach((button) => {
     button.addEventListener("click", (e) => {
         selectedNumber = e.target.textContent;
-    })
+    });
 });
 
 //! Note that i define grid numbers as a string !!!/////////////////////////////////////////////////
-let maxMistake = 3;
+
 
 squareBtn.forEach((cell,index) => {   
         cell.addEventListener("click", (e) => {             
@@ -49,7 +48,7 @@ squareBtn.forEach((cell,index) => {
         }    
         // e.target.textContent is the squares (input)number also what puzzle generate 
         // selectedNumber is the my selected number that i want to put in the square
-        })
+        });
 });
 
 /*
@@ -62,13 +61,11 @@ function isValid(grid,row,col,number) {
             return false;
         }                                   //! i need to fix the === comparsion(for perfection)
     }
-
     for(let j = 0; j < 9; ++j) {
         if(grid[j][col] == number) {
             return false;
         }
     }
-    
     let BoxStartRow = Math.floor(row / 3) * 3;
     let BoxStartColumn = Math.floor(col / 3) * 3;
     for(let i = 0; i < 3; ++i) {
@@ -84,65 +81,57 @@ function isValid(grid,row,col,number) {
 
 // //? create the gameover function adding the sound of game over !
 
+let gameoversound = new Audio("mixkit-player-losing-or-failing-2042.wav");
+gameoversound.preload = "auto";
+
 let gameDisplay = document.getElementById("game-display");
 let gameOverScreen = document.getElementById("game-over-screen");
+let restartGameBtn = document.getElementById("restart");
+
+
+function restartGame() {                           // Restart Game in case of loose
+    gameOverScreen.style.display = "none";
+    gameDisplay.style.display = "block";
+    
+    mistakeCount = 0;
+    mistakeElem.textContent = `0/3`;
+
+    squareBtn.forEach((cell) => {cell.textContent = ""});   // Clear all filled squares on the board
+    initializeGrid();                                      // Reinitializing grid
+}
+
 function gameOver() {
     gameDisplay.style.display = "none";
     gameOverScreen.style.display = "block";
+    gameoversound.play();
     restartGameBtn.addEventListener("click",() => {
         restartGame();
-    })
-   
-
+    });
 }
-
-let restartGameBtn = document.getElementById("restart");
-function restartGame() {
-    alert("ura");
-}
-
-
 
 function mistakeCounter() {
-    mistakeCount++;
+    ++mistakeCount;
     mistakeElem.textContent = `${mistakeCount}/3`;
-    if(mistakeCount === maxMistake) {
+    if(mistakeCount > maxMistake) {      //! see one more time
         console.log("you lose");
         gameOver();
         // throw new Error("you lose"); // for debugging
-
     }
 }
 
 
 
-
-
-
-
 function scoreCounter() {
+// think about the every time user earns score sound effect    AND ALSO ABOUT THE SOUND BUTTON EFFECT
+
 
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function gameWin() {
+    
+}
 
 
 
