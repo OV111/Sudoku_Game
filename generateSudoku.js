@@ -69,7 +69,6 @@ function isValid(grid,row,col,num) {      // Validation of numbers (cells)
             return false;          // isn't repeating by vertically
         }
     }
-
     // Box 3x3 Sub-Grid
     let BoxStartRow = Math.floor(row / 3) * 3;  // Defining the start of box
     let BoxStartColumn = Math.floor(col / 3) * 3;
