@@ -20,8 +20,8 @@ function fillGrid(grid) {
 }
 
 function generatePuzzle(grid) {   // Main Working Function (generating valid puzzle)
-    backtrack(grid);       // Fill grid with valid values
-    removeNumbers(grid);    // Remove numbers for puzzle
+    backtrack(grid);             // Fill grid with valid values
+    removeNumbers(grid);        // Remove numbers for puzzle
 }
 
 function removeNumbers(grid) {
