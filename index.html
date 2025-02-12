@@ -9,18 +9,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div id="game-display">
+
         <header>
             <h1>Sudoku Game</h1>
         </header>
-    <hr>
+        <hr>
         <nav class="start">
             <button class="startGame">Start Game</button>
             <h3>Mistakes: <span id="mistake">0/3</span></h3>
-            <h3>Score: <span id="score">___</span></h3>
+            <h3>Score: <span id="score">0</span></h3>
             <h3 id="timeNumber"> 00:00</h3>
             <button id="pause"><i class="fa fa-pause"></i></button>
             <button id="play"><i class="fa fa-play"></i></button>
-        </nav>                                    <!--header sarqel-->
+        </nav>                                  
 
     <div class="container">    
         <div class="square1">
@@ -137,6 +140,18 @@
     </footer>
     
     <hr>
+</div>
+
+    <div id="game-over-screen">
+        <h2>Game Over</h2>
+        <h4 id="scoreText">Your Score is <span id="score">0</span></h4>
+        <button id="restart">Restart Game</button>
+    </div>
+
+    <div id="game-win-screen">
+        <h2>You Win! 🎉</h2>
+        <button id="playAgain">Play Again</button>
+    </div>
     
     <script type="module" src="script.js"></script>
 </body>
