@@ -1,4 +1,4 @@
-# Sudoku Game
+# Sudoku Game (I will Think about multiple user's playing)
 [![Stargazers](https://img.shields.io/github/stars/OV111/Sudoku_Game?style=social)](https://github.com/OV111/Sudoku_Game/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
 
