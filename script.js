@@ -1,23 +1,54 @@
 import { initializeGrid, grid } from "./generateSudoku.js";
 
-
 initializeGrid();    
 
+// All DOM Elements
 const startGame = document.querySelector(".startGame");
+const mistakeElem = document.getElementById("mistake");
+const score = document.getElementById("score");
 const time = document.getElementById("timeNumber");
 const pauseBtn = document.getElementById("pause");
 const playBtn = document.getElementById("play");
 
-const mistakeElem = document.getElementById("mistake");
-let mistakeCount = 0;                                   // not const because changable
-let maxMistake = 3;
-let selectedNumber = null;
-
 const numbersBtn = document.querySelectorAll(".numbers");
 const squareBtn = document.querySelectorAll(".square");
 
-const score = document.getElementById("score");
+const gameDisplay = document.getElementById("game-display");
+const gameWinScreen = document.getElementById("game-win-screen");
+const gameOverScreen = document.getElementById("game-over-screen");
+
+const scoreText = document.getElementById("scoreText");
+const playAgainBtn = document.getElementById("playAgain"); 
+const restartGameBtn = document.getElementById("restart");
+
+// Game Variables (not const because changable)
+let maxMistake = 3;
+let selectedNumber = null;
 let scoreCount = 0;
+let mistakeCount = 0;                                   
+
+
+
+
+
+// Audio Elements
+let scoreSound = new Audio("Audio sounds/ScoreSuccess.wav");
+scoreSound.preload = "auto";
+
+let gameWinSound = new Audio("Audio sounds/GameWin.wav");
+gameWinSound.preload = "auto";
+
+let gameOverSound = new Audio("Audio sounds/mixkit-player-losing-or-failing-2042.wav");
+gameOverSound.preload = "auto";
+
+
+
+
+
+
+
+
+
 
 numbersBtn.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -25,8 +56,7 @@ numbersBtn.forEach((button) => {
     });
 });
 
-//! Note that i define grid numbers as a string !!!/////////////////////////////////////////////////
-
+//! Note that i define grid numbers as a string 
 
 squareBtn.forEach((cell,index) => {   
         cell.addEventListener("click", (e) => {             
@@ -59,6 +89,7 @@ squareBtn.forEach((cell,index) => {
   Checks if placing 'number' at grid[row][col] follows Sudoku rules,
   Ensures no duplicates in the row, column, or 3x3 box.
 */
+
 function isValid(grid,row,col,number) {  
     for(let i = 0; i < 9; ++i) {        
         if(grid[row][i] == number) {
@@ -83,35 +114,49 @@ function isValid(grid,row,col,number) {
 }
 
 
-// //? create the gameover function adding the sound of game over !
+function checkWin() {
+    for(let r = 0; r < 9; ++r) {
+        for(let c = 0; c < 9; ++c) {
+            if(grid[r][c] === "") { 
+                return false;
+            }
+        }
+    }
+    return true;
+}
+function gameWin() {                                      
+    if(checkWin()) {    
+        gameDisplay.style.display = "none";
+        gameWinScreen.style.display = "block";
+        gameWinSound.play();
 
-let gameoversound = new Audio("mixkit-player-losing-or-failing-2042.wav");
-gameoversound.preload = "auto";
-
-let gameDisplay = document.getElementById("game-display");
-let gameOverScreen = document.getElementById("game-over-screen");
-let restartGameBtn = document.getElementById("restart");
-
-
-function restartGame() {                           // Restart Game in case of loose
+        playAgainBtn.addEventListener("click", () => {
+            score.textContent = "0";                                          
+            gameWinScreen.style.display = "none";
+            restartGame(); 
+        })
+        console.log("You Win! 🎉"); // for me
+    }
+}
+function restartGame() {                           
     gameOverScreen.style.display = "none";
     gameDisplay.style.display = "block";
     
-    mistakeCount = 0;
+    mistakeCount = 0;                       // Resetting mistake
     mistakeElem.textContent = `0/3`;
+    scoreCount = 0;                         // Resetting score
+    score.textContent = "0";
 
     squareBtn.forEach((cell) => {cell.textContent = ""});   // Clear all filled squares on the board
     initializeGrid();                                      // Reinitializing grid
 }
 
-
-
-let scoreText = document.getElementById("scoreText");
 function gameOver() {
     gameDisplay.style.display = "none";
     gameOverScreen.style.display = "block";
-    gameoversound.play();
-    scoreText.textContent = `Your Score is ${scoreCount}`
+    gameOverSound.play();
+    scoreText.textContent = `Your Score is ${scoreCount}`;
+
     restartGameBtn.addEventListener("click",() => {
         restartGame();
     });
@@ -120,55 +165,23 @@ function gameOver() {
 function mistakeCounter() {
     ++mistakeCount;
     mistakeElem.textContent = `${mistakeCount}/3`;
-    if(mistakeCount > maxMistake) {      //! see one more time
-        console.log("you lose");
+    if(mistakeCount > maxMistake) { 
         gameOver();
+        console.log("you lose");         // for me
         // throw new Error("you lose"); // for debugging
     }
 }
-
-
-
-function scoreCounter() {    // think about the every time user earns score sound effect    AND ALSO ABOUT THE SOUND BUTTON EFFECT
-    scoreCount += 100
+function scoreCounter() {
+    scoreCount += 100;
     score.textContent = scoreCount;
-}
-
-
-function checkWin() {
-    for(let r = 0; r < 9; ++r) {
-        for(let c = 0; c < 9; ++c) {
-            if(grid[r][c] === "") { return false;}
-        }
-    }
-    return true;
-}
-
-
-let gameWinScreen = document.getElementById("game-win-screen");
-let playAgainBtn = document.getElementById("playAgain"); 
-
-function gameWin() {                                        // add the sound effects
-    if(checkWin()) {    
-        gameDisplay.style.display = "none";
-        gameWinScreen.style.display = "block";
-
-        playAgainBtn.addEventListener("click", () => {
-            restartGame();
-            scoreText.textContent = "0"                                                 // thing about score deletion 
-            gameWinScreen.style.display = "none";
-        })
-        console.log("You Win! 🎉"); // for me
-    }
+    scoreSound.play();
 }
 
 
 
 
 
-
-
-
+// Timer side///
 
 
 
