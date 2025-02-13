@@ -211,9 +211,20 @@ h3 {
     font-size: 35px;
     color: #0056b3;
 }
+#game-win-screen h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    width: 320px;
+    left: 550px;
+    font-size: 20px;
+    font-weight: 500;
+}
 #game-win-screen button {
     position: absolute;
-    top: 43.5%;
+    top: 47.5%;
     left: 644px;
     font-size: 20px;
     padding: 5px 10px;
