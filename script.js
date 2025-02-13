@@ -22,79 +22,69 @@ const playAgainBtn = document.getElementById("playAgain");
 const restartGameBtn = document.getElementById("restart");
 
 // Game Variables (not const because changable)
-let maxMistake = 3;
 let selectedNumber = null;
-let scoreCount = 0;
+let maxMistake = 3;
 let mistakeCount = 0;                                   
-
-
-
-
+let scoreCount = 0;
 
 // Audio Elements
-let scoreSound = new Audio("Audio sounds/ScoreSuccess.wav");
+const scoreSound = new Audio("Audio sounds/ScoreSuccess.wav");
 scoreSound.preload = "auto";
 
-let gameWinSound = new Audio("Audio sounds/GameWin.wav");
+const gameWinSound = new Audio("Audio sounds/GameWin.wav");
 gameWinSound.preload = "auto";
 
-let gameOverSound = new Audio("Audio sounds/mixkit-player-losing-or-failing-2042.wav");
+const gameOverSound = new Audio("Audio sounds/GameLose.wav");
 gameOverSound.preload = "auto";
 
 
-
-
-
-
-
-
-
+let timeStarted = false;
 
 numbersBtn.forEach((button) => {
     button.addEventListener("click", (e) => {
         selectedNumber = e.target.textContent;
+        if(!timeStarted) {
+            startTimer();
+            timeStarted  = true;
+        }
     });
 });
 
-//! Note that i define grid numbers as a string 
-
 squareBtn.forEach((cell,index) => {   
-        cell.addEventListener("click", (e) => {             
-
+    cell.addEventListener("click", (e) => {             
         let row = Math.floor(index / 9);            // Defining rows,columns(can't import)
         let column = index % 9;
         let num = selectedNumber;
-      
-        if(e.target.textContent === "") {          // empty cells only 
-            if(isValid(grid,row,column,num)) {    // checking Valid rows,columns,SubBox 
-                e.target.textContent = num;      // for putting the selectedNumber
-                grid[row][column] = num;        // updating grid!
-                scoreCounter();            // Adding Score for each right move
-                gameWin();                //if User wins
+
+        if(e.target.textContent === "" && selectedNumber !== null) {          // Empty cells only 
+            if(isValid(grid,row,column,num)) {    // Checking Valid rows,columns,SubBox 
+                console.log(num)
+                e.target.textContent = num;      // For putting the selectedNumber
+                grid[row][column] = num;        // Updating grid(for incomer check)!
+                scoreCounter();                           // Adding Score for each right move
+                gameWin();                               // In case the User wins
             } else {
-                console.log("Invalid move: This number cannot be placed here!");//!This will be root for mistakecounter 
+                console.log("Invalid move: This number cannot be placed here!");
                 mistakeCounter();
-                //! game when is mistske
             }
-        } else if(e.target.textContent !== "") {  // already defined numbers
+        } else if(e.target.textContent !== "") {      // Already defined numbers
             console.log("You can't change a predefined number!");
             return ;
         }    
-        // e.target.textContent is the squares (input)number also what puzzle generate 
-        // selectedNumber is the my selected number that i want to put in the square
-        });
+    });
+    // e.target.textContent is the squares (input)number also what puzzle generate 
+    // selectedNumber is the my selected number that i want to put in the square
 });
 
 /*
   Checks if placing 'number' at grid[row][col] follows Sudoku rules,
   Ensures no duplicates in the row, column, or 3x3 box.
 */
-
 function isValid(grid,row,col,number) {  
     for(let i = 0; i < 9; ++i) {        
         if(grid[row][i] == number) {
             return false;
-        }                                   //! i need to fix the === comparsion(for perfection)
+        }                                   //! I need to fix the === comparsion(for perfection)
     }
     for(let j = 0; j < 9; ++j) {
         if(grid[j][col] == number) {
@@ -113,6 +103,20 @@ function isValid(grid,row,col,number) {
     return true;
 }
 
+function scoreCounter() {
+    scoreCount += 100;
+    score.textContent = scoreCount;
+    scoreSound.play();
+}
+function mistakeCounter() {
+    ++mistakeCount;
+    mistakeElem.textContent = `${mistakeCount}/3`;
+    if(mistakeCount > maxMistake) { 
+        gameOver();
+        console.log("you lose");         // for me
+        // throw new Error("you lose"); // for debugging
+    }
+}
 
 function checkWin() {
     for(let r = 0; r < 9; ++r) {
@@ -124,82 +128,75 @@ function checkWin() {
     }
     return true;
 }
+let timeNumber = document.getElementById("timeNumber");
+let scoreTime = document.getElementById("scoreTime");
 function gameWin() {                                      
     if(checkWin()) {    
         gameDisplay.style.display = "none";
         gameWinScreen.style.display = "block";
         gameWinSound.play();
+        scoreTime.textContent = `You completed game in ${timeNumber.textContent}`  
+        clearInterval(timer);
 
         playAgainBtn.addEventListener("click", () => {
-            score.textContent = "0";                                          
+            score.textContent = "0";                                       
             gameWinScreen.style.display = "none";
             restartGame(); 
         })
         console.log("You Win! 🎉"); // for me
     }
 }
+
 function restartGame() {                           
     gameOverScreen.style.display = "none";
     gameDisplay.style.display = "block";
+    
+    selectedNumber = null;
     
     mistakeCount = 0;                       // Resetting mistake
     mistakeElem.textContent = `0/3`;
     scoreCount = 0;                         // Resetting score
     score.textContent = "0";
 
+    clearInterval(timer);
+    seconds = 0;
+    minutes = 0;
+    timeStarted = false;
+    time.textContent = "00:00";
+
     squareBtn.forEach((cell) => {cell.textContent = ""});   // Clear all filled squares on the board
     initializeGrid();                                      // Reinitializing grid
 }
-
 function gameOver() {
     gameDisplay.style.display = "none";
     gameOverScreen.style.display = "block";
     gameOverSound.play();
     scoreText.textContent = `Your Score is ${scoreCount}`;
 
+    seconds = 0;
+    minutes = 0;
+    timeStarted = false;
+    time.textContent = "00:00";
+
     restartGameBtn.addEventListener("click",() => {
         restartGame();
     });
 }
 
-function mistakeCounter() {
-    ++mistakeCount;
-    mistakeElem.textContent = `${mistakeCount}/3`;
-    if(mistakeCount > maxMistake) { 
-        gameOver();
-        console.log("you lose");         // for me
-        // throw new Error("you lose"); // for debugging
-    }
-}
-function scoreCounter() {
-    scoreCount += 100;
-    score.textContent = scoreCount;
-    scoreSound.play();
-}
 
 
 
-
-
-// Timer side///
-
-
-
-
-
-
-
+// Time Logic side //
  
-let timer = 0                       // add the pause when user win
-                                    // and reset the time when useer win || loss
-let seconds = 0;
+let timer = 0                       // add the pause when user win                       
+let seconds = 0;                   // and reset the time when useer win || loss
 let minutes = 0;
  
 startGame.addEventListener("click",() => {
     playBtn.style.display = "none";
     pauseBtn.style.display = "inline";
- 
-    clearInterval(timer)
+    timeStarted = true;
+    clearInterval(timer);
     seconds = 0;
     minutes = 0;
     startTimer();
@@ -207,7 +204,7 @@ startGame.addEventListener("click",() => {
  
 function startTimer() {
     timer = setInterval(()=> {
-        seconds++
+        seconds++;
         if(seconds && seconds == 60) {
             minutes++;
             seconds = 0;
@@ -217,7 +214,6 @@ function startTimer() {
 }
 
 
-
 let stopTime = {minutes:0, seconds:0,}                 // stopTime object!
 
 pauseBtn.addEventListener("click", () => {
@@ -225,12 +221,12 @@ pauseBtn.addEventListener("click", () => {
     playBtn.style.display = "inline"
     const timeParts = time.textContent.split(":");    // seperating the time(00:00)
      
-        stopTime = {                                      // storing time's
-            minutes: parseFloat(timeParts[0]),
-            seconds: parseFloat(timeParts[1]),
-        };
+    stopTime = {                                      // storing time's
+        minutes: parseFloat(timeParts[0]),
+        seconds: parseFloat(timeParts[1]),
+    };
 
-    clearInterval(timer)      
+    clearInterval(timer);
 })
 
 playBtn.addEventListener("click",() => {
@@ -241,11 +237,3 @@ playBtn.addEventListener("click",() => {
     seconds = stopTime.seconds;
     startTimer();
 })
-
-// /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-// alert("You Win")
