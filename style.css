@@ -21,13 +21,11 @@ h3 {
     margin-top: 6px;
     margin-right: 10px;
 }
-/* /////////////////////////////////// */
 .start {
     display: flex;
     margin-left: 440px;
     margin-top: 10px;
 }
-
 .startGame {
     display:flex;
     justify-content: center;
@@ -79,9 +77,6 @@ h3 {
     transition: 2s;
     transform: scale(1.16);
 }
-
-
-
 .container {
     display: grid;
     grid-template-columns: repeat(3,150px);
@@ -122,14 +117,6 @@ h3 {
     transition: 0.1s ease-in;
     transform: scale(1.05);
 }
-/* .square p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-items: center;
-    padding: 13px;
-} */
-
 .container2 {
    display: flex;
    justify-content: center;
@@ -160,13 +147,6 @@ h3 {
     transform: scale(1.1);
     font-size: 22px;
 }
-
-
-/* body { */
-    /* background-color: #d60f0f;  /* Set the page background color */
-    /* margin: 0;                  Ensure no margin */
-/* } */
-
 #game-over-screen{
     display: none;
     justify-content: center;
@@ -211,9 +191,6 @@ h3 {
     transition: 0.2s ease-in-out;
     transform: scale(1.1);
 }
-
-
-
 #game-win-screen  {
     display: none;
     justify-content: center;
