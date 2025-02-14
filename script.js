@@ -7,6 +7,7 @@ const startGame = document.querySelector(".startGame");
 const mistakeElem = document.getElementById("mistake");
 const score = document.getElementById("score");
 const time = document.getElementById("timeNumber");
+const timeParts = time.textContent.split(":");           // seperating the time(00:00)
 const pauseBtn = document.getElementById("pause");
 const playBtn = document.getElementById("play");
 
@@ -17,9 +18,12 @@ const gameDisplay = document.getElementById("game-display");
 const gameWinScreen = document.getElementById("game-win-screen");
 const gameOverScreen = document.getElementById("game-over-screen");
 
-const scoreText = document.getElementById("scoreText");
 const playAgainBtn = document.getElementById("playAgain"); 
 const restartGameBtn = document.getElementById("restart");
+
+const scoreText = document.getElementById("scoreText");
+const scoreTime = document.getElementById("scoreTime");
+const timeNumber = document.getElementById("timeNumber");
 
 // Game Variables (not const because changable)
 let selectedNumber = null;
@@ -37,12 +41,17 @@ gameWinSound.preload = "auto";
 const gameOverSound = new Audio("Audio sounds/GameLose.wav");
 gameOverSound.preload = "auto";
 
+// Time Variables
 
-let timeStarted = false;
+let timeStarted = false;                                                     
+let timer = 0;                                 
+let seconds = 0;         
+let minutes = 0;
 
 numbersBtn.forEach((button) => {
     button.addEventListener("click", (e) => {
         selectedNumber = e.target.textContent;
+        
         if(!timeStarted) {
             startTimer();
             timeStarted  = true;
@@ -55,10 +64,9 @@ squareBtn.forEach((cell,index) => {
         let row = Math.floor(index / 9);            // Defining rows,columns(can't import)
         let column = index % 9;
         let num = selectedNumber;
-
+        
         if(e.target.textContent === "" && selectedNumber !== null) {          // Empty cells only 
             if(isValid(grid,row,column,num)) {    // Checking Valid rows,columns,SubBox 
-                console.log(num)
                 e.target.textContent = num;      // For putting the selectedNumber
                 grid[row][column] = num;        // Updating grid(for incomer check)!
                 scoreCounter();                           // Adding Score for each right move
@@ -73,21 +81,21 @@ squareBtn.forEach((cell,index) => {
         }    
     });
     // e.target.textContent is the squares (input)number also what puzzle generate 
-    // selectedNumber is the my selected number that i want to put in the square
+    // selectedNumber is my selected number that i want to put in the square
 });
 
 /*
-  Checks if placing 'number' at grid[row][col] follows Sudoku rules,
-  Ensures no duplicates in the row, column, or 3x3 box.
+Checks if placing 'number' at grid[row][col] follows Sudoku rules,
+Ensures no duplicates in the row, column, or 3x3 box.
 */
 function isValid(grid,row,col,number) {  
     for(let i = 0; i < 9; ++i) {        
-        if(grid[row][i] == number) {
+        if(grid[row][i] === Number(number)) {
             return false;
         }                                   //! I need to fix the === comparsion(for perfection)
     }
     for(let j = 0; j < 9; ++j) {
-        if(grid[j][col] == number) {
+        if(grid[j][col] === Number(number)) {
             return false;
         }
     }
@@ -95,7 +103,7 @@ function isValid(grid,row,col,number) {
     let BoxStartColumn = Math.floor(col / 3) * 3;
     for(let i = 0; i < 3; ++i) {
         for(let j = 0; j < 3; ++j) {
-            if(grid[BoxStartRow + i][BoxStartColumn + j] == number) {
+            if(grid[BoxStartRow + i][BoxStartColumn + j] === Number(number)) {
                 return false;
             }
         }
@@ -114,7 +122,6 @@ function mistakeCounter() {
     if(mistakeCount > maxMistake) { 
         gameOver();
         console.log("you lose");         // for me
-        // throw new Error("you lose"); // for debugging
     }
 }
 
@@ -128,8 +135,6 @@ function checkWin() {
     }
     return true;
 }
-let timeNumber = document.getElementById("timeNumber");
-let scoreTime = document.getElementById("scoreTime");
 function gameWin() {                                      
     if(checkWin()) {    
         gameDisplay.style.display = "none";
@@ -137,7 +142,7 @@ function gameWin() {
         gameWinSound.play();
         scoreTime.textContent = `You completed game in ${timeNumber.textContent}`  
         clearInterval(timer);
-
+        
         playAgainBtn.addEventListener("click", () => {
             score.textContent = "0";                                       
             gameWinScreen.style.display = "none";
@@ -157,13 +162,13 @@ function restartGame() {
     mistakeElem.textContent = `0/3`;
     scoreCount = 0;                         // Resetting score
     score.textContent = "0";
-
+    
     clearInterval(timer);
     seconds = 0;
     minutes = 0;
     timeStarted = false;
     time.textContent = "00:00";
-
+    
     squareBtn.forEach((cell) => {cell.textContent = ""});   // Clear all filled squares on the board
     initializeGrid();                                      // Reinitializing grid
 }
@@ -177,31 +182,29 @@ function gameOver() {
     minutes = 0;
     timeStarted = false;
     time.textContent = "00:00";
-
+    
     restartGameBtn.addEventListener("click",() => {
         restartGame();
     });
 }
 
 
-
-
 // Time Logic side //
- 
-let timer = 0                       // add the pause when user win                       
-let seconds = 0;                   // and reset the time when useer win || loss
-let minutes = 0;
- 
+
 startGame.addEventListener("click",() => {
     playBtn.style.display = "none";
     pauseBtn.style.display = "inline";
+    
     timeStarted = true;
-    clearInterval(timer);
     seconds = 0;
     minutes = 0;
+    clearInterval(timer);
+    
+    pauseBtn.style.display = "inline";
+    playBtn.style.display = "none"
     startTimer();
 })
- 
+
 function startTimer() {
     timer = setInterval(()=> {
         seconds++;
@@ -210,30 +213,28 @@ function startTimer() {
             seconds = 0;
         }
         time.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`; 
-    },1000)
+    }, 1000)
 }
 
 
-let stopTime = {minutes:0, seconds:0,}                 // stopTime object!
 
 pauseBtn.addEventListener("click", () => {
-    pauseBtn.style.display = "none"
-    playBtn.style.display = "inline"
-    const timeParts = time.textContent.split(":");    // seperating the time(00:00)
-     
-    stopTime = {                                      // storing time's
+    pauseBtn.style.display = "none";
+    playBtn.style.display = "inline";
+    let stopTime = {minutes:0, seconds:0,};           // stopTime object!
+    stopTime = {                                      // Storing time's
         minutes: parseFloat(timeParts[0]),
         seconds: parseFloat(timeParts[1]),
     };
-
     clearInterval(timer);
-})
-
+});
 playBtn.addEventListener("click",() => {
     playBtn.style.display = "none";
     pauseBtn.style.display = "inline";
 
-    minutes =  stopTime.minutes;
-    seconds = stopTime.seconds;
+// ! ADD THE play button starts when the numbers are choosed
+    // minutes =  stopTime.minutes;
+    // seconds = stopTime.seconds;
+
     startTimer();
-})
+});
