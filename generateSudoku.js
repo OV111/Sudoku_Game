@@ -1,5 +1,7 @@
 export let grid = [];
 export function initializeGrid() {   // Initializing the 9x9 grid filling with 0's 
+    grid = [];        //! This is important because (resetting state before Reset the grid properly before initializing
+                     //! re-initializing to avoid unintended accumulation)
     for(let i = 0; i < 9; ++i) {
         let row = Array(9).fill(0);
         grid.push(row);
@@ -44,8 +46,8 @@ function backtrack(grid) {
                 for(let num = 1; num <= 9; ++num) {  // Looping for trying putting numbers  
                     if(isValid(grid,r,c,num)) {     // if Valid number put the number
                         grid[r][c] = num;
-                        if(backtrack(grid)) { return true; }  // !Recursive call
-                        grid[r][c] = 0;
+                        if(backtrack(grid)) { return true; }  // Recursive call
+                        grid[r][c] = "0";
                     }
                 }
                 return false;
@@ -57,13 +59,13 @@ function backtrack(grid) {
 
 function isValid(grid,row,col,num) {      // Validation of numbers (cells)
     for(let i = 0; i < 9; ++i) {
-        if(grid[row][i] === num) {   // checking if number of cell(in row),
-            return false;           // isn't repeating by horizontal
+        if(grid[row][i] === Number(num)) {   // checking if number of cell(in row),
+            return false;                   // isn't repeating by horizontal
         }
     }
     for(let i = 0; i < 9; ++i) {
-        if(grid[i][col] === num) {  // checking if number of cell(in column) 
-            return false;          // isn't repeating by vertically
+        if(grid[i][col] === Number(num)) {  // checking if number of cell(in column) 
+            return false;                  // isn't repeating by vertically
         }
     }
     // Box 3x3 Sub-Grid
@@ -71,14 +73,13 @@ function isValid(grid,row,col,num) {      // Validation of numbers (cells)
     let BoxStartColumn = Math.floor(col / 3) * 3;
     for(let i = 0; i < 3; ++i){         // checking for specific box all cells
         for(let j = 0; j < 3; ++j) {
-            if(grid[BoxStartRow + i][BoxStartColumn + j] === num) {  //! Chechking Each
+            if(grid[BoxStartRow + i][BoxStartColumn + j] === Number(num)) {  //! Chechking Each
                 return false;                                       //! Cell in the SubBox   
             }
         }
     }
     return true;
 }
-
 
 // Indexed Grid!
 // [0,0] [0,1] [0,2] | [0,3] [0,4] [0,5] | [0,6] [0,7] [0,8]
