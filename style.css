@@ -67,6 +67,7 @@ h3 #timeNumber {
     height: 30px;
     box-shadow: 1px 1px 6px 1px #6e76a7;
     cursor: pointer;
+    text-shadow: 2px 2px 3px grey;
 }
 #pause:hover {
     background-color: #0056b3;
