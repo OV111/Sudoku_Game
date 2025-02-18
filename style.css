@@ -21,6 +21,7 @@ h3 {
     left:-12px;
     margin-top: 6px;
     margin-right: 6px;
+    text-shadow: 2px 2px 3px grey;
 }
 .start {
     display: flex;
@@ -41,6 +42,7 @@ h3 {
     margin:0px 0px 0px 10px;
     background-color: #fafafa;
     cursor: pointer;
+    text-shadow: 2px 2px 3px grey;
     box-shadow: 1px 1px 15px 3px #6e76a7;
 }
 .startGame:hover {
